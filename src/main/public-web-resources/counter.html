@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Counter</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+        function createCountSource() {
+            var source = new EventSource("http://localhost:8080/numbers/stream_count/10");
+            source.addEventListener('message', function (e) {
+                var body = JSON.parse(e.data);
+                $("#count").text(body);
+                // You can close the re-connection attempt
+                // if(body === 5)
+                //     source.close();
+            }, false);
+
+            return source;
+        }
+
+        $(document).ready(function () {
+            source = createCountSource();
+        });
+    </script>
+</head>
+<body>
+Count: <label id="count"></label>
+</body>
+</html>
