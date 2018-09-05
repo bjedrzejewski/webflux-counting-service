@@ -6,7 +6,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script>
         function createCountSource() {
-            var source = new EventSource("http://localhost:8080/numbers/stream_count/10");
+            var source = new EventSource("http://localhost:8080/numbers/stream_count/1000");
             source.addEventListener('message', function (e) {
                 var body = JSON.parse(e.data);
                 $("#count").text(body);
